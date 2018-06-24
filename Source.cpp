@@ -39,3 +39,29 @@ float angle(line m, line n) {
 		(sqrt(m.a * m.a + m.b * m.b) * sqrt(n.a * n.a + n.b * n.b)));
 };
 
+int main() {
+	int i;
+	double xo, yo;
+	line line[2];
+	pt res;
+	//ввод двух линий
+	for (i = 0; i < 2; i++) {
+		printf("A%d=", i + 1);
+		scanf("%f", &line[i].a);
+		printf("B%d=", i + 1);
+		scanf("%f", &line[i].b);
+		printf("C%d=", i + 1);
+		scanf("%f", &line[i].c);
+
+	}
+	//если прямые не совпадают и не паралельны, производим расчет
+	//точки пересечения и угла
+	if (!(equivalent(line[0], line[1]) && parallel(line[0], line[1]))) {
+		intersect(line[0], line[1], res);
+		printf("Coordinate X=%f, Y=%f\n", res.x, res.y);
+		printf("Angle = %f\n", angle(line[0], line[1]) * 180 / M_PI);
+	}
+	else {  //в противном случае выводим соответствующее сообщение
+		printf("Lines don`t intersect");
+	}
+}
